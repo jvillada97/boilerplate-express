@@ -10,7 +10,10 @@ app.get("/", function(req, res){
     res.sendFile(absolutePath)
 })
 
-
+app.get('/json', function(req, res){
+    const jsonResponse = {"message": "Hello json"}
+    res.json(jsonResponse)
+})
 
 
 
