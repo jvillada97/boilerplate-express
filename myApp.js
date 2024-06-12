@@ -1,5 +1,6 @@
 let express = require('express');
 let app = express();
+require('dotenv').config()
 
 //console.log("Hello World")
 const publicMiddleWare = __dirname + '/public'
@@ -11,7 +12,16 @@ app.get("/", function(req, res){
 })
 
 app.get('/json', function(req, res){
-    const jsonResponse = {"message": "Hello json"}
+    var jsonText = 'Hello json'
+    var jsonResponse = {}
+    const envVariable = process.env.MESSAGE_STYLE;
+    console.log(envVariable)
+    if (envVariable === 'uppercase'){
+        jsonText = jsonText.toUpperCase()
+        jsonResponse = {"message": `${jsonText}`}
+    } else {
+        jsonResponse = {"message": `${jsonText}`}
+    }
     res.json(jsonResponse)
 })
 
